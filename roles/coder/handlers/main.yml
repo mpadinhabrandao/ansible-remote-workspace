@@ -1,0 +1,7 @@
+---
+# Handlers for web
+
+#- name: example restart
+#  action: service name=service state=restarted
+- name: reload systemctl
+  command: systemctl daemon-reload

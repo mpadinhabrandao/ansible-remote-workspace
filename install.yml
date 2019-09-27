@@ -1,0 +1,8 @@
+---
+# database role
+
+- hosts: '{{ target | default("localhost") }}'
+  roles:
+    - { role: htop }
+    - { role: vim }
+    - { role: coder }

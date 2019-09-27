@@ -1,0 +1,58 @@
+---
+
+- set_fact: "coder_version=2.1523-vsc1.38.1"
+
+- name: Install Git
+  package: name=git state=installed
+  become: yes
+
+- name: install the 'Development tools' package group
+  package: name="@Development tools" state=present
+  when:  ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' or ansible_distribution == 'Fedora'
+  become: yes
+  
+- name: Install the 'build-essential' meta package
+  package: name="build-essential" state=present
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  become: yes
+
+- name: Install net-tools
+  package: name=net-tools state=installed
+  become: yes
+  become_method: sudo
+
+- name: Install OpenSSL
+  package: name=openssl state=installed
+  become: yes
+  become_method: sudo
+
+- name: Acquire code-server
+  unarchive:
+    src: https://github.com/cdr/code-server/releases/download/{{ coder_version }}/code-server{{ coder_version }}-linux-x86_64.tar.gz 
+    dest: /tmp/
+    remote_src: yes
+  become: yes
+  become_method: sudo
+
+- name: Install code-server
+  command: chdir=/tmp/code-server{{ coder_version }}-linux-x86_64 chmod a+x ./code-server
+  become: yes
+  become_method: sudo
+
+- name: Install code-server
+  command: chdir=/tmp/code-server{{ coder_version }}-linux-x86_64 mv ./code-server /usr/bin
+  become: yes
+  become_method: sudo
+
+- name: Create coder service
+  template: 
+    src: coder.service.j2 
+    dest: /etc/systemd/system/coder.service 
+    mode: 644
+  notify:
+    - reload systemctl
+- name: Start coder service
+  service: 
+    name: coder.service 
+    state: started 
+    enabled: yes
