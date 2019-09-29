@@ -1,0 +1,5 @@
+---
+prerequisites_items:
+  - yum-utils
+  - device-mapper-persistent-data
+  - lvm2

@@ -1,26 +1,30 @@
 ---
 
-- name: Install Git
-  package: name=git state=installed
-  become: yes
-
 - name: install the 'Development tools' package group
-  package: name="@Development tools" state=present
+  package: 
+    name: "@Development tools"
+    state: present
   when:  ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' or ansible_distribution == 'Fedora'
   become: yes
 
 - name: Install the 'build-essential' meta package
-  package: name="build-essential" state=present
+  package: 
+    name: "build-essential" 
+    state: present
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   become: yes
 
 - name: Install net-tools
-  package: name=net-tools state=installed
+  package: 
+    name: net-tools 
+    state: present
   become: yes
   become_method: sudo
 
 - name: Install OpenSSL
-  package: name=openssl state=installed
+  package: 
+    name: openssl 
+    state: present
   become: yes
   become_method: sudo
 
@@ -49,6 +53,13 @@
     mode: 0644
   notify:
     - reload systemd
+
+- name: Creates work directory
+  file:
+    path: "{{coder_workdir}}"
+    state: directory
+    recurse: yes
+
 - name: Start coder service
   service:
     name: coder.service

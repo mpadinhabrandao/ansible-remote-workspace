@@ -1,3 +1,37 @@
 ---
-coder_workdir: /root/Projects/
+coder_workdir: "/var/Projects"
 coder_version: 2.1523-vsc1.38.1
+coder_exeptions: 
+  - mrmlnc.vscode-duplicate
+  - 2gua.rainbow-brackets
+  - Compulim.vscode-clock
+  - Artymaury.template-finder
+  - berublan.vscode-log-viewer
+  - cweijan.vscode-mysql-manager
+  - dbaeumer.vscode-eslint
+  - eriklynd.json-tools
+  - felixfbecker.php-debug
+  - felixfbecker.php-intellisense
+  - hollowtree.vue-snippets
+  - HookyQR.beautify
+  - jakelucas.code-file-nav
+  - nickdemayo.vscode-json-editor
+  - ms-azuretools.vscode-docker
+  - ms-vscode-remote.remote-containers
+  - ms-vscode-remote.remote-ssh
+  - ms-vscode-remote.remote-ssh-edit
+  - ms-vscode-remote.remote-ssh-explorer
+  - ms-vscode-remote.remote-wsl
+  - ms-vscode-remote.vscode-remote-extensionpack
+  - octref.vetur
+  - vscoss.vscode-ansible
+  - vscode-icons-team.vscode-icons
+  - Tyriar.sort-lines
+  - TabNine.tabnine-vscode
+  - redhat.vscode-yaml
+  - oderwat.indent-rainbow
+
+
+
+
+

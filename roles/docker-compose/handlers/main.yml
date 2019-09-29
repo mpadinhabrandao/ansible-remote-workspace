@@ -3,5 +3,3 @@
 
 #- name: example restart
 #  action: service name=service state=restarted
-- name: reload systemd
-  command: systemctl daemon-reload
